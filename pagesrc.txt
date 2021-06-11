@@ -1,0 +1,548 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <meta name="description" content="Guess the Correlation. How good are you at guessing correlation coefficients from scatter plots? Test your skills!">
+    <meta name="author" content="Omar Wagih">
+
+    <title>Guess the Correlation</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script async="" src="//www.google-analytics.com/analytics.js"></script><script src="./js/ie-emulation-modes-warning.js"></script>
+    <style type="text/css"></style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- NVD3 files -->
+    <link href="./js/nvd3/nv.d3.css" rel="stylesheet" type="text/css">
+    <script src="./js/nvd3/d3.min.js" charset="utf-8"></script>
+    <script src="./js/nvd3/nv.d3.js"></script>
+
+    <!-- game css -->
+    <link href="./css/game.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="./css/scatterchart.css">
+    
+    <!--Image share thumbnail-->
+    <link rel="image_src" type="image/png" href="images/guesscor_logo.png">
+
+  </head>
+
+  <body>
+
+
+
+    <a id="dl" class="hide">download me</a>
+   
+    <div class="container content" id="menu-content" style="display: none;">
+
+      <center>
+
+      <img class="menu-logo" alt="GUESS THE CORRELATION" src="images/guesscor_logo.svg">
+
+
+      <table class="menu-table">
+        <tbody><tr class="menu-item" id="new-game" content="game-content">
+          <td><div class="arrow" style="visibility: hidden;"></div></td>
+          <td><div>NEW GAME</div></td>
+        </tr>
+      </tbody></table>
+
+
+      <table class="menu-table">
+        <tbody><tr class="menu-item" id="resume-game" content="game-content" style="display: none;">
+          <td><div class="arrow"></div></td>
+          <td><div>RESUME GAME</div></td>
+        </tr>
+      </tbody></table>
+
+
+      <table class="menu-table">
+        <tbody><tr class="menu-item" id="twoplayer-game" content="twoplayer-content">
+          <td><div class="arrow"></div></td>
+          <td><div>TWO PLAYERS</div></td>
+        </tr>
+      </tbody></table>
+
+
+      <table class="menu-table">
+        <tbody><tr class="menu-item" id="game-scoreboard" content="scoreboard-content">
+          <td><div class="arrow"></div></td>
+          <td><div>SCORE BOARD</div></td>
+        </tr>
+      </tbody></table>
+        
+      <table class="menu-table">
+        <tbody><tr class="menu-item" id="about-game" content="about-content">
+          <td><div class="arrow"></div></td>
+          <td><div>ABOUT</div></td>
+        </tr>
+      </tbody></table>
+
+      <table class="menu-table">
+        <tbody><tr class="menu-item" id="game-settings" content="settings-content">
+          <td><div class="arrow"></div></td>
+          <td><div>SETTINGS</div></td>
+        </tr>
+
+      </tbody></table>
+
+
+      </center>
+
+      <div style="margin-top:30px"></div>
+      <div class="center">
+        <div class="highscore-wrap">high score  <span id="volume-control" class="hand icon-lg vol-off"></span></div>
+        <div class="highscore-menu highscore">0</div>
+
+      </div>
+      <div class="center username">183michaely589588576</div>
+
+
+      <center style="margin-top:40px">
+      <a href="https://twitter.com/intent/tweet?text=How%20good%20are%20you%20at%20guessing%20correlation%20coefficients%20from%20scatter%20plots%3F%20Test%20your%20skills!%20http%3A%2F%2Fguessthecorrelation.com%2F by @omarwagih" target="_blank" class="social tweet-game"><img src="images/social/twitter.png"></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fguessthecorrelation.com%2F" target="_blank" class="social fb-game"><img src="images/social/fb.png"></a>
+      <a href="https://plus.google.com/share?url=http%3A%2F%2Fguessthecorrelation.com%2F" target="_blank" class="social gplus-game"><img src="images/social/gplus.png"></a>
+
+      
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+<input type="hidden" name="cmd" value="_donations">
+<input type="hidden" name="business" value="omarwagih@gmail.com">
+<input type="hidden" name="lc" value="US">
+<input type="hidden" name="item_name" value="Omar Wagih">
+<input type="hidden" name="no_note" value="0">
+<input type="hidden" name="currency_code" value="CAD">
+<input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_LG.gif:NonHostedGuest">
+<input type="image" style="width:120px" src="./images/coffee.svg" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+      </center>
+
+   
+    </div>
+
+
+
+    <!-- GAME CONTENT STARTS -->
+    <div class="container content active" id="game-content" style="display: block;">
+
+        <p class="menu-item hand pull-right" content="menu-content" id="game-menu">main menu</p>
+        
+        <div class="center pull-right" style="padding-right:20px">
+          <div class="highscore-wrap">high score</div>
+          <div class="highscore-menu highscore">0</div>
+        </div>
+
+        <div id="hwrap">
+          <div class="icon-lg heart-empty heart-full"></div>
+          <div class="icon-lg heart-empty heart-full"></div>
+          <div class="icon-lg heart-empty heart-full"></div>
+        </div>
+        <div class="icon-lg coin"><div class="ncoins" style="">245</div></div>
+        
+      
+
+      <div class="row">
+        <div class="col-md-6">
+          <div id="scatter-chart" class="with-3d-shadow with-transitions">
+            <svg class="nvd3-svg"><g class="nvd3 nv-wrap nv-scatterChart nv-chart-14198" transform="translate(75,30)"><g><rect class="nvd3 nv-background" style="pointer-events: none;"></rect><g class="nv-x nv-axis nvd3-svg" transform="translate(0,320)"><g class="nvd3 nv-wrap nv-axis"><g><g class="tick zero" transform="translate(0,0)" style="opacity: 1;"><line y2="-320" x2="0"></line><text dy=".71em" y="10" style="text-anchor: middle;" x="0">0.0</text></g><g class="tick" transform="translate(312.5,0)" style="opacity: 1;"><line y2="-320" x2="0"></line><text dy=".71em" y="10" style="text-anchor: middle;" x="0">0.5</text></g><g class="tick" transform="translate(625,0)" style="opacity: 1;"><line y2="-320" x2="0"></line><text dy=".71em" y="10" style="text-anchor: middle;" x="0">1.0</text></g><path class="domain" d="M0,0V0H625V0"></path><text class="nv-axislabel" text-anchor="middle" y="36" x="312.5"></text></g></g></g><g class="nv-y nv-axis nvd3-svg"><g class="nvd3 nv-wrap nv-axis"><g><g class="tick zero" transform="translate(0,320)" style="opacity: 1;"><line x2="625" y2="0"></line><text dy=".32em" x="-10" opacity="0" style="text-anchor: end;" y="0">0.0</text></g><g class="tick" transform="translate(0,160)" style="opacity: 1;"><line x2="625" y2="0"></line><text dy=".32em" x="-10" opacity="1" style="text-anchor: end;" y="0">0.5</text></g><g class="tick" transform="translate(0,0)" opacity="0" style="opacity: 1;"><line x2="625" y2="0"></line><text dy=".32em" x="-10" opacity="0" style="text-anchor: end;" y="0">1.0</text></g><path class="domain" d="M0,0H0V320H0"></path><text class="nv-axislabel" transform="rotate(-90)" y="-50" x="-160" style="text-anchor: middle;"></text></g><g class="nv-axisMaxMin nv-axisMaxMin-y nv-axisMin-y" transform="translate(0,320)"><text dy=".32em" y="0" x="-10" text-anchor="end" style="opacity: 1;">0.0</text></g><g class="nv-axisMaxMin nv-axisMaxMin-y nv-axisMax-y" transform="translate(0,0)"><text dy=".32em" y="0" x="-10" text-anchor="end" style="opacity: 1;">1.0</text></g></g></g><g class="nv-scatterWrap nvd3-svg"><g class="nvd3 nv-wrap nv-scatter nv-chart-14198" transform="translate(0,0)"><defs><clipPath id="nv-edge-clip-14198"><rect width="625" height="320"></rect></clipPath></defs><g clip-path=""><g class="nv-groups"><g class="nv-group nv-series-0" style="stroke-opacity: 1; fill-opacity: 0.505088; stroke: rgb(0, 0, 0); fill: rgb(0, 0, 0);"><path transform="translate(279.64084747209375,162.81855702885156)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-0"></path><path transform="translate(267.68126626677736,140.62980151688282)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-1"></path><path transform="translate(218.54195564088673,174.52171520666016)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-2"></path><path transform="translate(68.90961620043952,288.2701404972461)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-3"></path><path transform="translate(228.2726973895547,197.2109032425449)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-4"></path><path transform="translate(435.44558842568756,88.28254300533985)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-5"></path><path transform="translate(158.83494290093756,257.9259451779277)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-6"></path><path transform="translate(537.8876390979141,25.60258787402399)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-7"></path><path transform="translate(210.38325288310153,195.71297211603124)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-8"></path><path transform="translate(224.0021807352539,178.0040520109961)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-9"></path><path transform="translate(235.5325066358125,137.0371262404336)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-10"></path><path transform="translate(162.6118070862657,173.23159717254296)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-11"></path><path transform="translate(423.8844831002891,127.55782732299024)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-12"></path><path transform="translate(553.457072564453,32.604692281671454)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-13"></path><path transform="translate(491.8497974423593,43.33564610219727)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-14"></path><path transform="translate(53.18446969729692,249.34881094994532)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-15"></path><path transform="translate(314.69253413372655,108.2585652666055)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-16"></path><path transform="translate(383.6266888016719,93.61205273153708)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-17"></path><path transform="translate(115.7855224221797,229.48958109696872)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-18"></path><path transform="translate(66.52648169059572,273.36468326012505)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-19"></path><path transform="translate(206.16380837021097,175.7301313823594)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-20"></path><path transform="translate(397.3865008529101,125.68709681900785)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-21"></path><path transform="translate(318.87027234896095,147.74501199138282)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-22"></path><path transform="translate(199.7955315728828,191.69202948353515)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-23"></path><path transform="translate(208.65802739830465,197.50998789147656)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-24"></path><path transform="translate(75.38228462120912,232.47146768875285)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-25"></path><path transform="translate(379.4356272618437,120.77477140550977)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-26"></path><path transform="translate(378.8461182702734,123.1122649564883)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-27"></path><path transform="translate(337.2134222823906,78.49968294609577)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-28"></path><path transform="translate(297.5091461984453,120.24626877125392)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-29"></path><path transform="translate(351.44680026457706,154.75283480542188)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-30"></path><path transform="translate(195.5528621347852,207.2827370791875)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-31"></path><path transform="translate(504.2356918647031,40.38294257955866)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-32"></path><path transform="translate(115.04095185669932,254.3503839498574)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-33"></path><path transform="translate(361.49221414693744,77.55338399458012)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-34"></path><path transform="translate(179.05596650692195,241.33863786858004)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-35"></path><path transform="translate(427.34381345142185,95.72933310965625)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-36"></path><path transform="translate(381.925683814164,158.61005613307032)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-37"></path><path transform="translate(145.66438114563672,211.77042812695314)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-38"></path><path transform="translate(278.2545348977891,190.81046402097263)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-39"></path><path transform="translate(591.7220318584531,29.765140122306185)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-40"></path><path transform="translate(197.1097321643594,195.93147820702342)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-41"></path><path transform="translate(567.449549842992,42.17049137759381)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-42"></path><path transform="translate(161.01260255613678,202.56558702823824)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-43"></path><path transform="translate(323.32088349675007,109.54339437891407)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-44"></path><path transform="translate(433.80289562111716,105.48034485554298)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-45"></path><path transform="translate(270.40164972672653,184.79502813802736)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-46"></path><path transform="translate(295.6844272994492,190.81184300913674)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-47"></path><path transform="translate(178.60701739446097,194.2655584658281)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-48"></path><path transform="translate(619.1728953222421,4.0390347964258435)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-49"></path><path transform="translate(513.0027611149375,34.66844350086577)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-50"></path><path transform="translate(519.1713581735625,52.48554902765529)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-51"></path><path transform="translate(356.94310318588276,122.92956678891406)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-52"></path><path transform="translate(244.63027216221874,203.51396611414066)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-53"></path><path transform="translate(271.8268252405439,151.27021012851955)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-54"></path><path transform="translate(395.08595873292967,103.94305052863675)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-55"></path><path transform="translate(322.7262321431093,151.10498281064454)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-56"></path><path transform="translate(356.6423415694062,131.0408588946641)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-57"></path><path transform="translate(374.65107493030854,118.71039760644534)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-58"></path><path transform="translate(275.37041462246486,161.2629567067031)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-59"></path><path transform="translate(311.49802225705474,163.92031785061522)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-60"></path><path transform="translate(355.99036444127347,88.48519831705079)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-61"></path><path transform="translate(483.0096015584999,84.01195166552543)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-62"></path><path transform="translate(91.7863998184805,220.65062924867576)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-63"></path><path transform="translate(407.1782109386093,126.53511202718555)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-64"></path><path transform="translate(6.99010574322667,317.7171586788164)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-65"></path><path transform="translate(423.4293474258516,88.27584226970316)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-66"></path><path transform="translate(63.786198508710996,237.09811003858206)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-67"></path><path transform="translate(448.05677065266406,93.63396519109766)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-68"></path><path transform="translate(308.48189410055465,183.526896056918)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-69"></path><path transform="translate(106.92295702751571,286.99789260363667)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-70"></path><path transform="translate(388.35265488849996,103.03871966591016)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-71"></path><path transform="translate(293.7925923389414,136.60834592682812)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-72"></path><path transform="translate(363.4794565906798,124.58730922153707)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-73"></path><path transform="translate(249.2427444459013,168.27152863532424)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-74"></path><path transform="translate(538.1978814814022,72.00235998416609)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-75"></path><path transform="translate(67.3355051497091,287.0057446025273)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-76"></path><path transform="translate(252.8328393943985,172.94407574875387)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-77"></path><path transform="translate(540.9148486125974,41.34136803139852)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-78"></path><path transform="translate(365.78705143762886,135.23856333506254)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-79"></path><path transform="translate(436.46519436395107,113.1085581774434)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-80"></path><path transform="translate(23.36643213096586,307.0435898707031)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-81"></path><path transform="translate(271.6124423435937,176.5359249616758)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-82"></path><path transform="translate(405.086347562332,112.77246313705861)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-83"></path><path transform="translate(141.7499737269298,243.143793063164)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-84"></path><path transform="translate(565.0395251165626,59.029524062478515)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-85"></path><path transform="translate(341.40216004096874,115.34681578856836)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-86"></path><path transform="translate(87.3812136451876,234.05335594105077)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-87"></path><path transform="translate(374.77603271795306,143.39264380342973)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-88"></path><path transform="translate(311.6526595891953,119.00064854504299)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-89"></path><path transform="translate(414.711280086125,117.10118054599027)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-90"></path><path transform="translate(211.42147567263282,169.12380844790624)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-91"></path><path transform="translate(259.7653240223671,173.32777484089067)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-92"></path><path transform="translate(164.14007803844936,237.5297250285781)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-93"></path><path transform="translate(455.74793613480466,72.46271662519142)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-94"></path><path transform="translate(268.07326424732815,153.26477024937893)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-95"></path><path transform="translate(361.5827119922344,140.37189215046092)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-96"></path><path transform="translate(214.6805710847305,181.20763503553124)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-97"></path><path transform="translate(465.7406978501015,106.82666409636718)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-98"></path><path transform="translate(133.50164217016408,205.81781527939452)" d="M-2,-2L2,-2 2,2 -2,2Z" class="nv-point nv-point-99"></path></g></g><g class="nv-point-paths"></g></g><g class="nv-point-clips"></g></g></g><g class="nv-regressionLinesWrap" clip-path="url(#nv-edge-clip-14198)"><g class="nv-regLines"><line class="nv-regLine" style="stroke-opacity: 0;"></line></g></g><g class="nv-distWrap"></g><g class="nv-legendWrap"></g></g></g></svg>
+          </div>
+        </div>
+
+        <div class="col-md-6" style="padding-top:20px">
+
+          <div id="input-div" style="margin-bottom:20px;">
+            <input type="text" id="guess-input" style="display: inline-block;">
+            <a id="submit-btn" class="btn-game hand" style="display: inline;">GUESS</a>
+            <a id="next-btn" class="btn-game hand" style="margin-left: 0px; display: none;">NEXT</a>
+            <div class="hide"><span style="margin-right:20px">time</span><span class="timer-minutes">00</span>:<span class="timer-seconds">00</span></div>
+          </div>
+
+          <div>
+            
+          </div>
+
+          <div>
+              <table id="results" class="results-table" style="display: none;">
+                <tbody><tr>
+                  <td>true r</td>
+                  <td id="true-r">0.67</td>
+                </tr>
+
+                <tr>
+                  <td>guessed r</td>
+                  <td id="guessed-r">0.66</td>
+                </tr>
+
+                <tr>
+                  <td>difference</td>
+                  <td id="diff-r">0.01</td>
+                </tr>
+
+              </tbody></table>
+
+              <table id="streaks-table" class="results-table" style="margin-top:20px">
+                  <tbody><tr id="streaks-wrap">
+                    <td>streaks</td>
+                    <td id="nstreaks">30</td>
+                  </tr>
+                  <tr id="avg-err-wrap">
+                    <td>mean error</td>
+                    <td id="avg-err">0.01</td>
+                  </tr>
+              </tbody></table>
+
+          </div>
+
+          <div class="summary" style="margin-top:10px">
+            <table>
+            <tbody><tr>
+              <td class="lives-summary" style="display: none;"> <div class="icon-sm heart-full"></div> </td>
+              <td class="lives-summary added-lives" style="display: none;">+1</td>
+              <td class="coins-summary" style="display: none;"><div class="icon-sm coin"></div></td>
+              <td class="coins-summary added-coins" style="display: none;">+5</td>
+            </tr>
+            </tbody></table>
+            <div class="bonus" style="display: none;">bonus +50</div>
+          </div>
+
+
+          <div id="game-over" style="margin-top: 10%; display: none">
+            <div>game over</div>
+            <span>
+              score: <span class="currscore">-1</span> &nbsp;
+              best: <span class="highscore">0</span>
+            </span>
+            <span class="blink new-highscore" style="display: none;"><br>new highscore!</span>
+            <br><br>
+
+            <a id="play-again-btn" class="hand">PLAY AGAIN</a><br>
+            
+
+
+            <div style="margin-top:20px">
+            <a href="#" target="_blank" class="social tweet-score"><img src="images/social/twitter.png"></a>
+            <a href="#" target="_blank" class="social fb-score"><img src="images/social/fb.png"></a>
+            <a href="#" target="_blank" class="social gplus-score"><img src="images/social/gplus.png"></a>
+            </div>
+<!-- 
+            <img src="images/Twitter.png" style="height:50px">
+            <img src="images/Facebook.png" style="height:50px"> -->
+
+          </div>
+
+
+        </div>
+        
+      </div>
+      
+
+
+      
+
+    </div><!-- /.container -->
+
+
+    <div class="container content" id="scoreboard-content">
+
+      <p class="menu-item hand pull-right" content="menu-content" id="game-menu">main menu</p>
+      <br>
+
+      <h3 id="scoreboard-loading">SCORE BOARD LOADING ...</h3>
+      <h3 id="scoreboard-error">ERROR LOADING SCORE BOARD<br>PLEASE TRY AGAIN LATER</h3>
+      <table style="width:100%; margin-top: 20px" id="scoreboard-table">
+         <thead>
+          <tr>
+             <th>USERNAME</th>
+             <th>HIGHSCORE</th>
+          </tr>
+         </thead>
+
+         <tbody id="scoreboard-tbody">
+         </tbody>
+      </table>
+
+    </div>
+
+    <div class="container content" id="about-content">
+      <p class="menu-item hand pull-right" content="menu-content" id="game-menu">main menu</p>
+      <br>
+
+
+      <h3 class="section-title">about the game</h3>
+      
+      <p class="lead">the aim of the game is simple. try to guess <a target="_blank" href="https://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient">how correlated the two variables in a scatter plot are</a>. the closer your guess is to the true correlation, the better.</p>
+
+      <p class="lead">your guess should be between zero and one, where zero is no correlation and one is perfect correlation. no negative correlations are used in the game. here are some examples:</p>
+
+      <img src="./images/correlations_examples.png" alt="Correlation examples" style="width:70%">
+
+      <p class="lead">
+        guess the correlation is a <a target="_blank" href="https://en.wikipedia.org/wiki/Human-based_computation_game">game with a purpose</a>. this means, while it aims to be entertaining, data on the guesses is collected and used to analyse how we perceive correlations in scatter plots. so the more people that play, the more data is generated!
+      </p>
+
+      <h3 class="section-title">rules</h3>
+      <p class="lead">
+      guess within 0.05 of the true correlation: +1 life and +5 coins<br>
+      guess within 0.10 of the true correlation: +1 coin<br>
+      guess within &gt;0.10 of the true correlation: -1 life<br>
+
+      <br>
+      you will also receive bonus coins if you make good guesses in a row!
+      </p>
+
+
+      <h3 class="section-title">about me</h3>
+      <p class="lead">
+      i'm a phd student studying bioinformatics at the university of cambridge and the european bioinformatics institute. this game is a side project to feed one of my many day-to-day curiosities.
+      <br>i'm always grateful for suggestions and happy to answer questions about the game or how the data will be used. so tweet me at <a target="_blank" href="https://twitter.com/omarwagih">@omarwagih</a> or <a href="mailto:omarwagih@gmail.com">email me</a>.
+      </p>
+
+
+
+
+      <h3 class="section-title">usage disclaimer and privacy statement</h3>
+      <p class="lead">
+      the analysis of the resulting data relies on true human guesses. please don't go out of your way to repeatedly and systematically guess the correct correlation (e.g. using bots). it takes away from the enjoyment of other users by spamming the score board. it's also easy to identify users that are doing this from the data and clear their name from the score board. that being said, if you find a bug or something does not work as expected, please do <a href="mailto:omarwagih@gmail.com">email me</a> so i can sort it out. 
+      </p>
+
+      <p class="lead">the following information will be automatically stored remotely whenever you make a correlation guess: current date and time, ip address and correlation data. this data is evaluated purely for statistical purposes in an anonymised form. if you do not consent to providing such information, or contributing data please refrain from playing. for more information on how the data will be used, feel free to <a href="mailto:omarwagih@gmail.com">email me</a>
+      </p>
+    </div>
+
+
+    <!-- TWO PLAYER CONTENT START -->
+
+    <div id="beta-2p" class="ribbon-banner" style="display: none;">beta version</div>
+    <div class="container content" id="twoplayer-content">
+
+      <p class="menu-item multip-end hand pull-right" content="menu-content" id="game-menu">main menu </p>
+
+
+      <center id="multip-intro" style="display:">
+      <br>
+      <br>
+      <p>enter opponent's username</p>
+
+      <p style="font-size:18px; margin-bottom: 20px">your username: <span class="username error">183michaely589588576</span></p>
+      <input id="p2-username" placeholder="e.g jacksmith" type="text" style="width: 40%; text-align: center">
+      <div style="margin-top: 10px">
+        <a id="start-multip-game" class="hand">START GAME</a>
+        <a id="cancel-multip-game" class="hand" style="display:none">CANCEL</a>
+      </div>
+      <br><br>
+
+      <p id="waiting-to-join" class="error" style="display:none">waiting for player to join<span class="loadingdots">.</span></p>
+
+
+        <center style="margin-top:50px; margin-bottom:0px; color: ; font-size: 16px">
+          <a href="https://www.google.ca/chrome/browser/desktop/" target="_blank">
+            <img src="./images/chrome.png" alt="Chrome logo" style="width:35px">
+          </a>
+          <a href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">
+            <img src="./images/ff.png" alt="Firefox logo" style="width:35px">
+          </a>
+          <div style="margin-top:20px"></div>
+          note: two player mode will only work in latest versions of chrome and firefox
+          
+          <div style="margin-top:20px"></div>
+          to start: both players must have game website open. one player enters the username of the opponent, that user is then prompted to start a game.
+          
+          <div style="margin-top:20px"></div>
+          rules: closest guess to true correlation wins a coin. first player to 10 coins wins. no coins awarded on draw.
+        </center>  
+      </center>
+
+      <div class="row" id="multip-game-wrap" style="display:none">
+        <p id="waiting-to-play" class="error" style="display:none; font-size: 16px;">waiting for <span class="opponent-username">opponent</span> <span class="loadingdots">.</span></p>
+        
+        <div class="col-md-6">
+          <!-- SCORE TABLE -->
+          <table id="multip-coins">
+            <tbody><tr style="margin-bottom:10px">
+              <td>me</td>
+              <td> <div class="icon-lg coin" style="margin-bottom:5px"><div class="p1-coins" style="">0</div></div> </td>
+            </tr>
+
+            <tr>
+              <td class="opponent-username">opponent</td>
+              <td> <div class="icon-lg coin"><div class="p2-coins" style="">0</div></div> </td>
+            </tr>
+          </tbody></table>
+
+          <div id="multip-scatter-chart" class="with-3d-shadow with-transitions">
+              <svg></svg>
+          </div>
+        </div>
+
+
+        <div class="col-md-6">
+
+          <!-- INPUT -->
+          <div id="multip-input-div" style="margin-bottom:20px; ">
+            <input type="text" id="multip-guess-input">
+            <a id="multip-guess-btn" class="btn-game hand">GUESS</a>
+            <div class=""><span style="margin-right:20px">time</span><span class="timer-minutes">00</span>:<span class="timer-seconds">00</span></div>
+          </div>
+
+          <!-- RESULTS -->
+          <div id="multip-results-wrap">
+            <div style="margin-bottom:20px">
+              <p class="multip-win blink" style="display:none">-</p>
+              <a id="multip-next-btn" class="btn-game hand" style="display:none; margin-left:0">NEXT</a> 
+            </div>
+            <table id="multip-results" style="width:100%; display:none">
+                  <tbody><tr> 
+                    <td>my guess</td>
+                    <td id="p1-guess">?</td>
+                  </tr>
+
+                  <tr> 
+                    <td><div style="margin-left:60px">difference</div></td>
+                    <td id="p1-diff">?</td>
+                  </tr>
+
+                  <tr>
+                    <td>their guess</td>
+                    <td id="p2-guess">?</td>
+                  </tr>
+
+                  <tr>
+                    <td><div style="margin-left:60px">difference</div></td>
+                    <td id="p2-diff">?</td>
+                  </tr>
+
+                  <tr>
+                    <td>true r</td>
+                    <td id="multip-true-r">-</td>
+                  </tr>
+
+              </tbody></table>
+          </div>
+
+
+          <div id="multip-gameover" style="display:none">
+            
+              <div>game over</div>
+              <div><span class="multip-win-round">username</span> wins this round!</div>
+              <br>
+              <a id="multip-play-again-btn" class="hand">PLAY AGAIN</a>
+              <br>
+              
+
+              <div style="margin-top:20px">
+                  <a href="https://twitter.com/intent/tweet?text=How%20good%20are%20you%20at%20guessing%20correlation%20coefficients%20from%20scatter%20plots%3F%20Test%20your%20skills!%20http%3A%2F%2Fguessthecorrelation.com%2F by @omarwagih" target="_blank" class="social tweet-game"><img src="images/social/twitter.png"></a>
+                  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fguessthecorrelation.com%2F" target="_blank" class="social fb-game"><img src="images/social/fb.png"></a>
+                  <a href="https://plus.google.com/share?url=http%3A%2F%2Fguessthecorrelation.com%2F" target="_blank" class="social gplus-game"><img src="images/social/gplus.png"></a>
+              </div>
+              <br>
+          </div>
+
+          <div id="chatbox-wrap">
+            <p>chat box</p>
+            <div class="chatbox" style="font-size: 20px">
+            </div>
+            <input id="msg-text" type="text" style="width: 70%; margin-top:10px">
+            <a id="send-msg" class="hand" style="margin-left:10px">send</a>
+          </div>
+          
+          <br>
+          <p class="hand pull-right" id="multip-end-btn">END GAME</p>
+        </div>
+
+
+    </div><!--END ROW-->
+
+
+    </div>
+
+    <div class="container content" id="settings-content">
+      <p class="menu-item hand pull-right" content="menu-content" id="game-menu">main menu</p>
+      <br>
+      <h3 style="margin-bottom:30px">settings</h3>
+
+      <h3 id="clear-game-data" class="hand">CLEAR GAME DATA</h3>
+      <p class="lead" style="color:#D9BF00">warning: this will erase your name and highscore from the score board and reset all game preferences</p>
+      <h3 id="dl-ing" style="display:none">DOWNLOADING ...</h3>
+      <h3 id="dl-game-data" class="hand" style="display:none">DOWNLOAD YOUR GAME DATA</h3>
+      <p class="lead" style="display:none">download all your guesses with the time and date they were made. please wait for a few seconds while your data is prepared and downloaded.</p>
+      
+    </div>
+
+
+
+
+<center>
+<div style="margin-top:30px">
+
+
+
+</div>
+</center>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./js/parse.js"></script>
+    <script src="./js/peer.min.js"></script>
+    <script src="./js/jstat.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+
+    <script src="./js/jquery.min.js"></script>
+    <!-- <script src="./js/gamedata.js"></script>-->
+    <script src="./js/jquery-ui.min.js"></script>
+
+    <script src="./js/timer.js"></script>
+
+    <script src="./js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./js/ie10-viewport-bug-workaround.js"></script>
+
+
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-39148235-10', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script language="JavaScript" type="text/javascript">
+    //<![CDATA[
+        window.onunload = bONUnload;
+            function bUnload(e) {
+                window.onunload = null;
+                return false;
+            }
+            window.onbeforeunload = function () {
+                return null;
+            }
+            function bONUnload(e) {
+                return false;
+            }
+    //]]>
+</script>
+
+
+</body></html>
